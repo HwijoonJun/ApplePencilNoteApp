@@ -1,24 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OuJ-pt-SEP">
+    <device id="ipad11_0rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Note View Controller-->
+        <scene sceneID="zZ1-4i-rTl">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                <viewController id="gZs-IR-lKZ" customClass="NoteViewController" customModule="Note" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YZ7-PB-kCb">
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WeK-lD-tkh" customClass="PKCanvasView">
+                                <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="zt4-rX-c12" appends="YES" id="rS8-v7-Urb"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cj1-Qg-yR0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="WeK-lD-tkh" secondAttribute="bottom" id="BjN-AS-b4z"/>
+                            <constraint firstItem="WeK-lD-tkh" firstAttribute="leading" secondItem="YZ7-PB-kCb" secondAttribute="leading" id="SG3-4R-GdB"/>
+                            <constraint firstItem="WeK-lD-tkh" firstAttribute="top" secondItem="YZ7-PB-kCb" secondAttribute="top" id="ZxD-am-Aoy"/>
+                            <constraint firstAttribute="trailing" secondItem="WeK-lD-tkh" secondAttribute="trailing" id="fpj-71-QaA"/>
+                        </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="C2w-pC-89h"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="JcI-OI-6N4">
+                        <nil key="title"/>
+                        <leftBarButtonItems>
+                            <barButtonItem id="LiB-c1-En1"/>
+                            <barButtonItem title="toggle tookpicker" image="pencil" catalog="system" id="iJ8-Zo-prY">
+                                <connections>
+                                    <action selector="toggleToolPicker" destination="gZs-IR-lKZ" id="bnt-bs-dYz"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <textField key="titleView" opaque="NO" contentMode="center" horizontalHuggingPriority="248" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" id="rsn-vF-0bl">
+                            <rect key="frame" x="447" y="15" width="300" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <rightBarButtonItems>
+                            <barButtonItem title="save" image="square.and.arrow.down" catalog="system" id="Jq9-GG-5Er">
+                                <connections>
+                                    <action selector="saveToFiles:" destination="gZs-IR-lKZ" id="a2T-Z8-jfl"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="clear" id="VFd-Bj-W2x">
+                                <connections>
+                                    <action selector="clearPage:" destination="gZs-IR-lKZ" id="Dc2-0J-NtU"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="canvasView" destination="WeK-lD-tkh" id="AvR-UM-rnL"/>
+                        <outlet property="changeName" destination="rsn-vF-0bl" id="DSk-5d-jow"/>
+                        <outlet property="toggleToolPickerButton" destination="iJ8-Zo-prY" id="Ui5-aE-JVj"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xkx-Yc-Gzj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="zt4-rX-c12">
+                    <connections>
+                        <action selector="didTapView:" destination="gZs-IR-lKZ" id="5t5-f9-0Am"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="1483.4170854271356" y="-27.338129496402878"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ZPI-d8-IPY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OuJ-pt-SEP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BEN-tJ-lxX">
+                        <rect key="frame" x="0.0" y="24" width="1194" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gZs-IR-lKZ" kind="relationship" relationship="rootViewController" id="x6C-q6-n2E"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wzm-5M-zda" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="775.8793969849246" y="-27.338129496402878"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
